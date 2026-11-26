@@ -1,4 +1,4 @@
-ï»¿# iccmonit ê¢â¬â INEMA Claude Monitor
+ï»¿# iccmonit ê¢â¬â ARCKHÉ Claude Monitor
 
 TUI em Python que monitora **todas as sessêÂµes Claude Code ativas** na mêÂ¡quina em tempo real, com cota 5h/7d, mêÂ©tricas por sessêÂ£o e chat embutido via OAuth.
 
@@ -45,7 +45,7 @@ VersêÂ£o atual: **v1.17.11**
 ## InstalaêÂ§êÂ£o
 
 ```bash
-git clone git@github.com:inematds/iccmonit.git
+git clone git@github.com:linnoff88-dev/iccmonit.git
 cd iccmonit
 chmod +x start.sh
 ```
@@ -273,7 +273,7 @@ Quando algo aparece, sugere a skill apropriada do `skillmanager3x` (`session-han
 
 #### Skills êÂºteis ê¢â¬â `/skills`
 
-Lista as 3 skills do [skillmanager3x](https://github.com/inematds/skillmanager3x) com **quando usar cada uma**:
+Lista as 3 skills do [skillmanager3x](https://github.com/linnoff88-dev/skillmanager3x) com **quando usar cada uma**:
 
 | Skill | Quando rodar |
 |-------|--------------|
@@ -374,7 +374,7 @@ Habilita/desabilita mensagens de alerta individualmente:
 
 | Campo | PadrêÂ£o | DescriêÂ§êÂ£o |
 |-------|--------|-----------|
-| `title` | `INEMA Claude Monitor` | TêÂ­tulo do header (a versêÂ£o êÂ© appendada automaticamente) |
+| `title` | `ARCKHÉ Claude Monitor` | TêÂ­tulo do header (a versêÂ£o êÂ© appendada automaticamente) |
 | `refresh_interval_seconds` | `10` | Intervalo de auto-refresh em segundos |
 
 ---

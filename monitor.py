@@ -46,7 +46,7 @@ INCIDENTS_FILE = STATE_DIR / "incidents.json"
 
 
 def read_recent_incidents(limit: int = 5) -> list[dict]:
-    """Lê eventos escritos por watchdogs (ex.: inemaimg-watchdog)."""
+    """Lê eventos escritos por watchdogs (ex.: ARCKHÉimg-watchdog)."""
     try:
         data = json.loads(INCIDENTS_FILE.read_text())
         return list(data.get("incidents", []))[-limit:][::-1]
@@ -1382,7 +1382,7 @@ class ChatPane(Vertical):
             log.write("  [yellow]geral[/]   responde sobre todas as sessões (estado do painel)")
             log.write("  [yellow]focado[/]  responde sobre UMA sessêo (transcript carregado, read-only)")
             log.write("")
-            log.write("[bold]docs[/]  [dim]https://github.com/inematds/iccmonit[/]")
+            log.write("[bold]docs[/]  [dim]https://github.com/linnoff88-dev/iccmonit[/]")
         elif cmd == "/diag":
             log.write("[bold magenta]── diagnóstico do painel ──[/]")
             for line in diagnose_panel(self._sessions, self._quota):
@@ -1817,7 +1817,7 @@ class MonitorApp(App):
     # slot abaixo da Máquina: só um de processes/sessions/docker/boot por vez
     active_slot: reactive[str] = reactive("sessions")
 
-    TITLE = f"{CONFIG.get('title', 'INEMA Claude Monitor')} {VERSION}"
+    TITLE = f"{CONFIG.get('title', 'ARCKHÉ Claude Monitor')} {VERSION}"
 
     def compose(self) -> ComposeResult:
         yield Header()

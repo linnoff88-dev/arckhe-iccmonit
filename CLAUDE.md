@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## O que é este projeto
 
-**INEMA Claude Monitor (`iccmonit`)** — TUI em Python que roda em terminal separado e monitora todas as sessões Claude Code ativas na máquina em tempo real, com chat embutido via OAuth.
+**ARCKHÉ Claude Monitor (`iccmonit`)** — TUI em Python que roda em terminal separado e monitora todas as sessões Claude Code ativas na máquina em tempo real, com chat embutido via OAuth.
 
 ## Como rodar
 
