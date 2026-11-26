@@ -10,7 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ```bash
 ./start.sh                       # TUI no terminal
-./start.sh web                   # 127.0.0.1:8000 (padrão)
+./start.sh web                   # 127.0.0.1:8000 (padrêo)
 ./start.sh web 8000 lan          # IP da LAN auto-detectado
 ./start.sh web 8000 192.168.1.50 # IP específico
 ```
@@ -19,8 +19,8 @@ Teclas: `r` = refresh manual, `q` = sair.
 
 Modo web usa o pacote `textual-serve` (via `serve.py`) — empacota a TUI atual num WebSocket+xterm.js. Notas importantes:
 
-- **Não use** `python3 -m textual serve` (abre o demo do Textual).
-- **Não bindar em `0.0.0.0`** — o textual-serve embute o host no websocket e o navegador rejeita WS pra `0.0.0.0`. Por isso o modo `lan` resolve o IP de antemão.
+- **Nêo use** `python3 -m textual serve` (abre o demo do Textual).
+- **Nêo bindar em `0.0.0.0`** — o textual-serve embute o host no websocket e o navegador rejeita WS pra `0.0.0.0`. Por isso o modo `lan` resolve o IP de antemêo.
 
 ## Dependências
 
@@ -45,11 +45,11 @@ iccmonit/
 | Dado | Fonte | Notas |
 |---|---|---|
 | Sessões ativas | `~/.claude/sessions/*.json` | Um arquivo por PID ativo |
-| Contexto %, modelo, custo | transcript JSONL — última msg `assistant` com campo `usage` | Path: JSONL **mais recente por `mtime`** em `~/.claude/projects/<encoded-cwd>/` (o `sessionId` em `session.json` não acompanha `/clear`) |
+| Contexto %, modelo, custo | transcript JSONL — última msg `assistant` com campo `usage` | Path: JSONL **mais recente por `mtime`** em `~/.claude/projects/<encoded-cwd>/` (o `sessionId` em `session.json` nêo acompanha `/clear`) |
 | Cota 5h / 7d / 7d-Sonnet | `/tmp/cc_limits_<uid>.json` | Cache 60s populado pelo statusline — fonte oficial (API Anthropic) |
 | CLAUDE.md | `<cwd>/CLAUDE.md` | stat do arquivo |
 | Memória | `~/.claude/projects/<encoded-cwd>/memory/` | Conta arquivos e soma bytes |
-| Agentes lançados | transcript — tool_use com `name == "Agent"` | Contagem acumulada na sessão |
+| Agentes lançados | transcript — tool_use com `name == "Agent"` | Contagem acumulada na sessêo |
 | Skills invocadas | transcript — tool_use com `name == "Skill"` | Conta distintas |
 | Chat OAuth | `~/.claude/.credentials.json` → `claudeAiOauth.accessToken` | Header: `anthropic-beta: oauth-2025-04-20` |
 
@@ -63,32 +63,32 @@ Barras e dois pontos viram hífens, com hífen prefixado:
 Thresholds de cor por métrica. Esquema de cores:
 - **Azul** — muito baixo / ocioso
 - **Verde** — normal / saudável
-- **Amarelo** — atenção
+- **Amarelo** — atençêo
 - **Vermelho** — crítico / alerta
 
 Alertas podem ser habilitados/desabilitados individualmente em `alerts`. O modelo do chat e o intervalo de refresh também ficam aqui.
 
 ## Plano de versões
 
-- **V1 (atual)** — painel de sessões + cota + chat geral + chat focado por sessão (clique na linha → transcript vira contexto, read-only) + modo web
-- **V2** — interação remota com sessão ativa (injetar prompts em sessão Claude Code em execução — mecanismo a investigar)
+- **V1 (atual)** — painel de sessões + cota + chat geral + chat focado por sessêo (clique na linha → transcript vira contexto, read-only) + modo web
+- **V2** — interaçêo remota com sessêo ativa (injetar prompts em sessêo Claude Code em execuçêo — mecanismo a investigar)
 
 ## Esquema de versionamento
 
-Constante `VERSION` em `monitor.py` segue o padrão **`v1.xx.yy`**:
+Constante `VERSION` em `monitor.py` segue o padrêo **`v1.xx.yy`**:
 
 - **major (`1`)** — só muda quando vira V2 (mudança de plano).
 - **`xx`** — incrementa a cada **recurso novo** (feature). Sequencial: `01`, `02`, `03`...
 - **`yy`** — incrementa a cada **bug fix**. Sequencial: `01`, `02`, `03`...
-- **`yy` NÃO reinicia ao subir `xx`** — segue contando dentro da major.
+- **`yy` NêO reinicia ao subir `xx`** — segue contando dentro da major.
 - Apenas o bump de major zera `xx` e `yy`.
 
 Sempre que adicionar feature ou corrigir bug, atualizar `VERSION` em `monitor.py:18` antes de finalizar.
 
 ## Decisões importantes
 
-- **Não usar `ccm` (claude-monitor)** — calcula cota dos JSONLs locais e erra. Nossa fonte é a API via cache do statusline.
-- **Não usar `ccusage`** para monitoramento — é ferramenta de auditoria/relatório, não tempo real.
-- **Não usar `claude-pulse`** — o `statusline-command.sh` existente já cobre o mesmo escopo com comportamento customizado.
+- **Nêo usar `ccm` (claude-monitor)** — calcula cota dos JSONLs locais e erra. Nossa fonte é a API via cache do statusline.
+- **Nêo usar `ccusage`** para monitoramento — é ferramenta de auditoria/relatório, nêo tempo real.
+- **Nêo usar `claude-pulse`** — o `statusline-command.sh` existente já cobre o mesmo escopo com comportamento customizado.
 - **Plan Max20** detectado via `~/.claude/.credentials.json` → `claudeAiOauth.rateLimitTier: "default_claude_max_20x"`.
 - **Cota semanal Sonnet separada** — campo `seven_day_sonnet` no cache de limits. Importante monitorar pois tem limite próprio.

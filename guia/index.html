@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>iccmonit — INEMA Claude Monitor</title>
-<meta name="description" content="TUI em Python que monitora todas as sessões Claude Code ativas na máquina em tempo real: cota 5h/7d, métricas por sessão e chat embutido via OAuth.">
+<meta name="description" content="TUI em Python que monitora todas as sessões Claude Code ativas na máquina em tempo real: cota 5h/7d, métricas por sessêo e chat embutido via OAuth.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
@@ -120,7 +120,7 @@
     <div>
       <span class="chip">TUI · Python · Textual</span>
       <h1>Todas as sessões <span class="amb">Claude Code</span>, num painel só</h1>
-      <p class="lead">iccmonit roda num terminal separado e mostra em tempo real cota 5h/7d/7d-Sonnet, contexto e custo de cada sessão ativa, máquina, processos, serviços — e traz um chat embutido que já sabe o que está acontecendo no painel.</p>
+      <p class="lead">iccmonit roda num terminal separado e mostra em tempo real cota 5h/7d/7d-Sonnet, contexto e custo de cada sessêo ativa, máquina, processos, serviços — e traz um chat embutido que já sabe o que está acontecendo no painel.</p>
       <div class="cta">
         <a class="btn" href="#guia">Começar o guia</a>
         <a class="btn ghost" href="https://github.com/inematds/iccmonit" target="_blank" rel="noopener">Ver no GitHub</a>
@@ -132,18 +132,18 @@
 
 <section id="oque"><div class="wrap">
   <span class="chip">O que é</span>
-  <h2>Visão consolidada de tudo que roda com Claude Code na máquina</h2>
-  <p class="sub">Pensado pra ficar aberto lado a lado com as sessões — sem precisar alternar de terminal pra saber quanto de cota sobrou ou qual sessão está pesada.</p>
+  <h2>Visêo consolidada de tudo que roda com Claude Code na máquina</h2>
+  <p class="sub">Pensado pra ficar aberto lado a lado com as sessões — sem precisar alternar de terminal pra saber quanto de cota sobrou ou qual sessêo está pesada.</p>
   <div class="grid g3">
-    <div class="card"><h3>📊 Cota oficial da API</h3><p>Barras de janela 5h, semanal e semanal-Sonnet lidas do mesmo cache (<code>/tmp/cc_limits_&lt;uid&gt;.json</code>) que o statusline padrão do Claude Code usa — não recalcula localmente, então não diverge do valor real.</p></div>
-    <div class="card"><h3>🗂️ Sessões ativas em tabela</h3><p>Uma linha por sessão viva (ou morta, com <kbd>a</kbd>): projeto, status idle/busy, modelo, % de contexto, tamanho do <code>CLAUDE.md</code>, memória, agentes lançados e skills invocadas.</p></div>
-    <div class="card"><h3>💬 Chat com OAuth do Claude Code</h3><p>Chat lateral (Haiku por padrão) que recebe o snapshot do painel como contexto — ou, ao focar numa sessão, o transcript dela — com comandos como <code>/diag</code> e <code>/docker</code>.</p></div>
+    <div class="card"><h3>📊 Cota oficial da API</h3><p>Barras de janela 5h, semanal e semanal-Sonnet lidas do mesmo cache (<code>/tmp/cc_limits_&lt;uid&gt;.json</code>) que o statusline padrêo do Claude Code usa — nêo recalcula localmente, entêo nêo diverge do valor real.</p></div>
+    <div class="card"><h3>🗂️ Sessões ativas em tabela</h3><p>Uma linha por sessêo viva (ou morta, com <kbd>a</kbd>): projeto, status idle/busy, modelo, % de contexto, tamanho do <code>CLAUDE.md</code>, memória, agentes lançados e skills invocadas.</p></div>
+    <div class="card"><h3>💬 Chat com OAuth do Claude Code</h3><p>Chat lateral (Haiku por padrêo) que recebe o snapshot do painel como contexto — ou, ao focar numa sessêo, o transcript dela — com comandos como <code>/diag</code> e <code>/docker</code>.</p></div>
   </div>
 </div></section>
 
 <section id="fluxo"><div class="wrap">
   <span class="chip">Como funciona</span>
-  <h2>Coleta em worker thread, refresh automático, TUI que não trava</h2>
+  <h2>Coleta em worker thread, refresh automático, TUI que nêo trava</h2>
   <p class="sub">Cada fonte é lida direto do que o próprio Claude Code (ou o SO) já mantém — sem reimplementar cálculo de cota.</p>
   <div class="flow">
     <span>~/.claude/sessions/*.json</span><span class="arr">→</span>
@@ -154,7 +154,7 @@
     <span>Chat OAuth</span>
   </div>
   <div class="grid g3" style="margin-top:26px">
-    <div class="card"><h3>🧵 Coleta assíncrona</h3><p>Leitura de transcripts grandes, <code>nvidia-smi</code>, <code>docker ps</code> etc. roda numa worker thread — a TUI não congela, valores antigos ficam na tela até o novo lote chegar.</p></div>
+    <div class="card"><h3>🧵 Coleta assíncrona</h3><p>Leitura de transcripts grandes, <code>nvidia-smi</code>, <code>docker ps</code> etc. roda numa worker thread — a TUI nêo congela, valores antigos ficam na tela até o novo lote chegar.</p></div>
     <div class="card"><h3>🔀 Segue o JSONL mais recente</h3><p>O <code>sessionId</code> em <code>session.json</code> congela no boot; após <code>/clear</code> o monitor passa a seguir o arquivo de <code>mtime</code> mais novo em <code>~/.claude/projects/&lt;encoded-cwd&gt;/</code>.</p></div>
     <div class="card"><h3>🌐 Modo web opcional</h3><p><code>textual-serve</code> empacota a mesma TUI num WebSocket + xterm.js, sem mudar código — útil pra acompanhar de outra máquina ou via túnel SSH.</p></div>
   </div>
@@ -165,11 +165,11 @@
   <h2>O que precisa estar no ar antes de rodar</h2>
   <p class="sub">Linux ou macOS (testado em Linux), Python 3.10+ e o Claude Code já logado nessa máquina.</p>
   <div class="grid g3">
-    <div class="card"><h3>Python 3.10+</h3><p>Interpretador disponível no PATH.</p><pre><span class="c"># confirma versão</span>
+    <div class="card"><h3>Python 3.10+</h3><p>Interpretador disponível no PATH.</p><pre><span class="c"># confirma versêo</span>
 <span class="k">python3 --version</span></pre></div>
-    <div class="card"><h3>Claude Code logado</h3><p>Precisa de <code>~/.claude/.credentials.json</code> válido — é dali que vem o OAuth do chat.</p><pre><span class="c"># se ainda não logou</span>
+    <div class="card"><h3>Claude Code logado</h3><p>Precisa de <code>~/.claude/.credentials.json</code> válido — é dali que vem o OAuth do chat.</p><pre><span class="c"># se ainda nêo logou</span>
 <span class="k">claude login</span></pre></div>
-    <div class="card"><h3>Statusline padrão rodando</h3><p>É ele que popula <code>/tmp/cc_limits_&lt;uid&gt;.json</code> com a cota oficial. Sem isso o painel de cota fica vazio.</p><pre><span class="c"># nada a instalar — vem com o Claude Code</span>
+    <div class="card"><h3>Statusline padrêo rodando</h3><p>É ele que popula <code>/tmp/cc_limits_&lt;uid&gt;.json</code> com a cota oficial. Sem isso o painel de cota fica vazio.</p><pre><span class="c"># nada a instalar — vem com o Claude Code</span>
 <span class="k">ls /tmp/cc_limits_*.json</span></pre></div>
   </div>
 </div></section>
@@ -177,11 +177,11 @@
 <section id="guia"><div class="wrap">
   <span class="chip">Guia de uso · passo a passo</span>
   <h2>Do clone ao painel rodando</h2>
-  <p class="sub">As dependências (<code>textual</code>, <code>anthropic</code>, <code>textual-serve</code>) são instaladas automaticamente pelo <code>start.sh</code> se faltarem.</p>
+  <p class="sub">As dependências (<code>textual</code>, <code>anthropic</code>, <code>textual-serve</code>) sêo instaladas automaticamente pelo <code>start.sh</code> se faltarem.</p>
 
   <div class="step"><div class="b">1</div><div>
     <h3>Clonar o repo</h3>
-    <p>Clona e dá permissão de execução ao entrypoint.</p>
+    <p>Clona e dá permissêo de execuçêo ao entrypoint.</p>
 <pre><span class="k">git clone git@github.com:inematds/iccmonit.git
 cd iccmonit
 chmod +x start.sh</span></pre>
@@ -202,7 +202,7 @@ chmod +x start.sh</span></pre>
 
   <div class="step"><div class="b">4</div><div>
     <h3>Ou rodar em modo web</h3>
-    <p>Empacota a mesma TUI num WebSocket + xterm.js no navegador. Bind padrão é só local; <code>lan</code> expõe pra sub-rede (sem autenticação — use com cuidado, ou prefira túnel SSH pra acesso remoto).</p>
+    <p>Empacota a mesma TUI num WebSocket + xterm.js no navegador. Bind padrêo é só local; <code>lan</code> expõe pra sub-rede (sem autenticaçêo — use com cuidado, ou prefira túnel SSH pra acesso remoto).</p>
 <pre><span class="k">./start.sh web</span>                       <span class="c"># 127.0.0.1:8000 — só este host</span>
 <span class="k">./start.sh web 9000</span>                  <span class="c"># porta custom</span>
 <span class="k">./start.sh web 8000 lan</span>              <span class="c"># IP da LAN auto-detectado</span>
@@ -211,9 +211,9 @@ chmod +x start.sh</span></pre>
 
   <div class="step"><div class="b">5</div><div>
     <h3>Navegar pela TUI</h3>
-    <p>Duas colunas redimensionáveis (50/50 por padrão): painéis de Cota/Máquina/Processos/Sessões à esquerda, Chat à direita.</p>
+    <p>Duas colunas redimensionáveis (50/50 por padrêo): painéis de Cota/Máquina/Processos/Sessões à esquerda, Chat à direita.</p>
     <table class="k">
-      <tr><th>Tecla</th><th>Ação</th></tr>
+      <tr><th>Tecla</th><th>Açêo</th></tr>
       <tr><td><code>r</code></td><td>Refresh manual</td></tr>
       <tr><td><code>a</code></td><td>Sessões ativas ↔ todas (vivas + mortas)</td></tr>
       <tr><td><code>p</code> / <code>v</code></td><td>Liga/desliga painel Processos / Serviços</td></tr>
@@ -225,8 +225,8 @@ chmod +x start.sh</span></pre>
 
   <div class="step"><div class="b">6</div><div>
     <h3>Usar o chat embutido</h3>
-    <p>Modo geral responde sobre o painel inteiro; selecione uma linha da tabela de sessões (↑/↓ + Enter) pra focar o chat no transcript daquela sessão.</p>
-<pre><span class="k">/diag</span>     <span class="c"># diagnóstico — só o que está 🟡/🔴, com sugestão de skill</span>
+    <p>Modo geral responde sobre o painel inteiro; selecione uma linha da tabela de sessões (↑/↓ + Enter) pra focar o chat no transcript daquela sessêo.</p>
+<pre><span class="k">/diag</span>     <span class="c"># diagnóstico — só o que está 🟡/🔴, com sugestêo de skill</span>
 <span class="k">/skills</span>   <span class="c"># session-statusline / memory-audit / session-handoff</span>
 <span class="k">/docker</span>   <span class="c"># lista containers, ou "/docker &lt;nome&gt; start|stop|restart|logs"</span>
 <span class="k">/clear</span>    <span class="c"># volta ao modo geral</span></pre>
@@ -235,10 +235,10 @@ chmod +x start.sh</span></pre>
 
 <section id="exemplos"><div class="wrap">
   <span class="chip">Exemplos</span>
-  <h2>O painel em execução</h2>
+  <h2>O painel em execuçêo</h2>
   <p class="sub">Cota, sessões e chat focado, tudo na mesma tela.</p>
   <div class="ex">
-    <figure><img src="assets/ex1.jpg" alt="iccmonit rodando — painel de cota, sessões e chat"><figcaption>Layout padrão: Cota → Máquina → Sessões à esquerda, Chat ocupando a coluna direita.</figcaption></figure>
+    <figure><img src="assets/ex1.jpg" alt="iccmonit rodando — painel de cota, sessões e chat"><figcaption>Layout padrêo: Cota → Máquina → Sessões à esquerda, Chat ocupando a coluna direita.</figcaption></figure>
   </div>
 </div></section>
 
@@ -247,7 +247,7 @@ chmod +x start.sh</span></pre>
   <h2>V1 hoje, V2 em pesquisa</h2>
   <p class="sub">V1 é só leitura — observa transcripts e cota sem interferir nas sessões.</p>
   <div class="phase"><div class="tag">V1 · atual</div><div class="d"><strong>Painel + chat observador</strong><span>Cota, sessões, chat geral e chat focado (read-only) + modo web via textual-serve.</span></div></div>
-  <div class="phase"><div class="tag">V2 · planejado</div><div class="d"><strong>Interação remota com a sessão</strong><span>Injetar prompts numa sessão ativa como se fosse no terminal original — mecanismo ainda a investigar (stdin do processo, IPC, ou <code>claude --resume</code> paralelo). Sem API oficial pra isso hoje.</span></div></div>
+  <div class="phase"><div class="tag">V2 · planejado</div><div class="d"><strong>Interaçêo remota com a sessêo</strong><span>Injetar prompts numa sessêo ativa como se fosse no terminal original — mecanismo ainda a investigar (stdin do processo, IPC, ou <code>claude --resume</code> paralelo). Sem API oficial pra isso hoje.</span></div></div>
 </div></section>
 
 <footer>

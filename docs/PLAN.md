@@ -1,4 +1,4 @@
-# Plano de Implementação — Claude Code Session Monitor
+# Plano de Implementaçêo — Claude Code Session Monitor
 
 ## Sumário executivo
 
@@ -15,26 +15,26 @@ Dados primários vêm do filesystem que o Claude Code escreve (sessões, transcr
 
 ### V1 — TUI com sessões + chat geral
 - Painel de sessões ativas: projeto, status (busy/idle), modelo, ctx %, custo, última atividade
-- Chat geral embutido: Haiku por padrão, sem contexto das sessões
+- Chat geral embutido: Haiku por padrêo, sem contexto das sessões
 - Cota 5h/7d lida do cache do statusline
 - Stack: Python + `textual`
 
-### V2 — Interação remota com sessão ativa
-- Selecionar uma sessão no painel e enviar prompts para ela como se estivesse dentro
+### V2 — Interaçêo remota com sessêo ativa
+- Selecionar uma sessêo no painel e enviar prompts para ela como se estivesse dentro
 - Mecanismo a investigar: stdin do processo, arquivo de IPC, ou outro canal do Claude Code
-- Não há API oficial — requer pesquisa de viabilidade antes de implementar
+- Nêo há API oficial — requer pesquisa de viabilidade antes de implementar
 
 ## Arquitetura em 3 fases
 
 ### Fase 1 — MVP filesystem-only (meio dia)
 
-Objetivo: ver todas as sessões ativas, contexto, custo aproximado, memória e CLAUDE.md por sessão. **Sem cota** nessa fase.
+Objetivo: ver todas as sessões ativas, contexto, custo aproximado, memória e CLAUDE.md por sessêo. **Sem cota** nessa fase.
 
 ```
 monitor.py
 ├── poll ~/.claude/sessions/*.json a cada 1s
 │     → lista de sessões ativas (pid, cwd, status, sessionId, version)
-├── pra cada sessão, deriva caminhos:
+├── pra cada sessêo, deriva caminhos:
 │     ├── transcript:  ~/.claude/projects/<encoded-cwd>/<sessionId>.jsonl
 │     ├── memory:      ~/.claude/projects/<encoded-cwd>/memory/
 │     └── CLAUDE.md:   <cwd>/CLAUDE.md
@@ -43,7 +43,7 @@ monitor.py
 └── render TUI (rich/textual)
 ```
 
-Produto da Fase 1: dashboard funcional sem cota, atualização a cada 1s.
+Produto da Fase 1: dashboard funcional sem cota, atualizaçêo a cada 1s.
 
 ### Fase 2 — Hook de statusline para cota (1-2 horas)
 
@@ -57,7 +57,7 @@ echo "$INPUT" > ~/.claude-monitor/statusline-${CLAUDE_SESSION_ID:-unknown}.json
 echo "$INPUT" | <comando_statusline_atual>   # passthrough preserva visual existente
 ```
 
-Configuração em `~/.claude/settings.json`:
+Configuraçêo em `~/.claude/settings.json`:
 
 ```json
 {
@@ -74,7 +74,7 @@ Produto da Fase 2: dashboard com cota 5h e 7d em tempo real.
 
 ### Fase 3 — OTel para histórico (opcional, 2-3 horas)
 
-Para gráficos temporais, agregação semanal e métricas históricas, ligar OTel nativo do Claude Code:
+Para gráficos temporais, agregaçêo semanal e métricas históricas, ligar OTel nativo do Claude Code:
 
 ```bash
 export CLAUDE_CODE_ENABLE_TELEMETRY=1
@@ -193,7 +193,7 @@ Outros tipos de linha: `user`, `tool_result`, `system`, `summary`, `result`, `fi
 
 Disparo: a cada mensagem do assistente, mudança de permission mode ou toggle de vim, debounced em 300ms.
 
-**Cota só popula após primeira chamada de API** na sessão (Pro/Max subscribers).
+**Cota só popula após primeira chamada de API** na sessêo (Pro/Max subscribers).
 
 ### 4. Memória
 
@@ -201,7 +201,7 @@ Disparo: a cada mensagem do assistente, mudança de permission mode ou toggle de
 
 Conteúdo típico: `MEMORY.md` (índice) + arquivos individuais por tópico (`user_role.md`, `feedback_*.md`, etc).
 
-Pode não existir se a sessão nunca escreveu memória.
+Pode nêo existir se a sessêo nunca escreveu memória.
 
 ### 5. OTel events e métricas (Fase 3)
 
@@ -240,14 +240,14 @@ Default interval: métricas 60s, logs 5s.
 │ #  PID    Projeto         Status  Modelo    Ctx     Custo  Update │
 │ ▶  22276  hyperframes     busy    opus-4-7  127k 13% $0.42  há 2s │
 │    78320  skill           idle    opus-4-7   72k  7% $0.31  há 8s │
-├─ Sessão focada: skill ────────────────────────────────────────────┤
+├─ Sessêo focada: skill ────────────────────────────────────────────┤
 │ Transcript: .../50c05132-...jsonl  (380 KB, 50 turnos)            │
 │ Memória:    4 arquivos, 18 KB                                     │
-│ CLAUDE.md:  não encontrado em cwd                                 │
+│ CLAUDE.md:  nêo encontrado em cwd                                 │
 │ Última msg do user (há 8s): "documenta o plano…"                  │
-│ Última ação: Edit (en/memory-audit/SKILL.md)                      │
+│ Última açêo: Edit (en/memory-audit/SKILL.md)                      │
 └───────────────────────────────────────────────────────────────────┘
-[F1] alterna sessão  [F2] abre transcript  [F5] força refresh  [q] sai
+[F1] alterna sessêo  [F2] abre transcript  [F5] força refresh  [q] sai
 ```
 
 ## Roadmap detalhado
@@ -261,8 +261,8 @@ Default interval: métricas 60s, logs 5s.
 | 5 | TUI básico (rich ou textual) com polling 1s | 1-2 h | 2, 3, 4 |
 | 6 | Wrapper de statusline que dumpa JSON | 30 min | 1 |
 | 7 | Integrar JSON da statusline no TUI (cota + custo) | 30 min | 5, 6 |
-| 8 | Refinamentos visuais, atalhos, foco de sessão | 1 h | 7 |
-| 9 | (opcional) OTel collector + integração | 2-3 h | 8 |
+| 8 | Refinamentos visuais, atalhos, foco de sessêo | 1 h | 7 |
+| 9 | (opcional) OTel collector + integraçêo | 2-3 h | 8 |
 
 **Caminho crítico:** 1 → 2 → 3 → 5 → 6 → 7. Total ~5h pra MVP utilizável.
 
@@ -271,38 +271,38 @@ Default interval: métricas 60s, logs 5s.
 ### Schema da statusline pode mudar
 Versões futuras do Claude Code podem renomear/adicionar/remover campos.
 
-**Mitigação:** monitor usa `dict.get()` com defaults, falha de campo individual não derruba o painel. Schema versionado pelo `version` do JSON. Logar warning quando encontrar campo desconhecido.
+**Mitigaçêo:** monitor usa `dict.get()` com defaults, falha de campo individual nêo derruba o painel. Schema versionado pelo `version` do JSON. Logar warning quando encontrar campo desconhecido.
 
-### Multi-sessão na mesma cwd
-Bug histórico (já corrigido em versão recente): statusline mostrava modelo de outra sessão.
+### Multi-sessêo na mesma cwd
+Bug histórico (já corrigido em versêo recente): statusline mostrava modelo de outra sessêo.
 
-**Mitigação:** segregar tudo por `session_id`, nunca por cwd.
+**Mitigaçêo:** segregar tudo por `session_id`, nunca por cwd.
 
 ### Privacidade
 Transcript JSONL contém todo o conteúdo da conversa. Memory contém preferências pessoais.
 
-**Mitigação:** monitor é read-only, não persiste cópia, não expõe via rede. Default = nenhum log persistente além do necessário.
+**Mitigaçêo:** monitor é read-only, nêo persiste cópia, nêo expõe via rede. Default = nenhum log persistente além do necessário.
 
 ### Token de OAuth
 `~/.claude/.credentials.json` tem token de OAuth.
 
-**Mitigação:** monitor **não toca** nesse arquivo. Toda a leitura é de arquivos que Claude Code já escreve por design para uso externo (sessões, transcript, statusline JSON).
+**Mitigaçêo:** monitor **nêo toca** nesse arquivo. Toda a leitura é de arquivos que Claude Code já escreve por design para uso externo (sessões, transcript, statusline JSON).
 
-### Cota não populada no início
-Os campos `rate_limits` só aparecem **após a primeira chamada de API** da sessão (Pro/Max). Sessões recém-iniciadas mostram cota indisponível por alguns segundos.
+### Cota nêo populada no início
+Os campos `rate_limits` só aparecem **após a primeira chamada de API** da sessêo (Pro/Max). Sessões recém-iniciadas mostram cota indisponível por alguns segundos.
 
-**Mitigação:** UI mostra `aguardando primeira chamada` até `rate_limits` aparecer.
+**Mitigaçêo:** UI mostra `aguardando primeira chamada` até `rate_limits` aparecer.
 
 ### `/usage` endpoint direto
 Tecnicamente possível usar o token de `.credentials.json` para chamar `https://api.anthropic.com/api/oauth/usage`, mas é off-label, fora de TOS oficial.
 
-**Decisão:** **não usar.** Statusline + OTel cobrem o mesmo dado de forma suportada.
+**Decisêo:** **nêo usar.** Statusline + OTel cobrem o mesmo dado de forma suportada.
 
-## O que NÃO vamos fazer
+## O que NêO vamos fazer
 
 - Proxy HTTP local interceptando chamadas pra api.anthropic.com — quebra com updates do CLI, é frágil e provavelmente fora de TOS.
-- Modificar binário do Claude Code — manutenção impossível.
-- Persistir transcripts ou memória em outro local — duplicação desnecessária e problema de privacidade.
+- Modificar binário do Claude Code — manutençêo impossível.
+- Persistir transcripts ou memória em outro local — duplicaçêo desnecessária e problema de privacidade.
 - Suporte multi-máquina — escopo é máquina única, terminal local.
 
 ## Referências oficiais
@@ -313,20 +313,20 @@ Tecnicamente possível usar o token de `.credentials.json` para chamar `https://
 - Diretório `.claude`: https://code.claude.com/docs/en/claude-directory.md
 - Hooks: https://code.claude.com/docs/en/hooks.md
 
-## Checkpoints de validação
+## Checkpoints de validaçêo
 
 Ao final de cada fase, validar:
 
 **Fase 1:**
 - [ ] Lista todas as sessões ativas detectadas via `ls ~/.claude/sessions/`
-- [ ] Mostra contexto correto comparado ao `/context` da sessão real
-- [ ] Atualiza quando uma nova sessão é aberta
-- [ ] Atualiza quando uma sessão é fechada (arquivo some)
+- [ ] Mostra contexto correto comparado ao `/context` da sessêo real
+- [ ] Atualiza quando uma nova sessêo é aberta
+- [ ] Atualiza quando uma sessêo é fechada (arquivo some)
 
 **Fase 2:**
 - [ ] Cota 5h aparece na UI dentro de 5s após primeira chamada de API
 - [ ] Cota 7d aparece na UI
-- [ ] Custo da sessão atualiza a cada mensagem do assistente
+- [ ] Custo da sessêo atualiza a cada mensagem do assistente
 - [ ] Statusline original do usuário continua funcionando (passthrough)
 
 **Fase 3:**

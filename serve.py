@@ -4,12 +4,12 @@
 Uso:
     python3 serve.py [porta] [lan|<ip>]
 
-- sem args        → bind em 127.0.0.1 (apenas local, padrão seguro)
+- sem args        → bind em 127.0.0.1 (apenas local, padrêo seguro)
 - lan             → detecta IP da LAN e bind nele (acessível de outras máquinas)
 - <ip>            → bind no IP fornecido (ex.: 192.168.1.50)
 
 textual-serve embute o host de bind no websocket do HTML — bindar em 0.0.0.0
-quebra a conexão no navegador. Por isso resolvemos o IP de antemão.
+quebra a conexêo no navegador. Por isso resolvemos o IP de antemêo.
 """
 
 import socket
@@ -24,7 +24,7 @@ DEFAULT_PORT = 8000
 
 
 def detect_lan_ip() -> str:
-    """Descobre o IP da LAN abrindo um socket UDP pro gateway (não envia pacote)."""
+    """Descobre o IP da LAN abrindo um socket UDP pro gateway (nêo envia pacote)."""
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         s.connect(("8.8.8.8", 80))
@@ -62,9 +62,9 @@ def main() -> None:
     print(f"Servindo em {url}  (Ctrl+C para sair)")
     if is_lan:
         print(f"  ⚠ MODO LAN — qualquer máquina em {host}/24 pode acessar")
-        print("    SEM AUTENTICAÇÃO. Use só em rede de confiança.")
+        print("    SEM AUTENTICAÇêO. Use só em rede de confiança.")
     else:
-        print("  ⚠ sem autenticação — pra acesso remoto use SSH tunnel ou modo lan")
+        print("  ⚠ sem autenticaçêo — pra acesso remoto use SSH tunnel ou modo lan")
     open_browser_after(url)
     Server(
         command="python3 monitor.py",
